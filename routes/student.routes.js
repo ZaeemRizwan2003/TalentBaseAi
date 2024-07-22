@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const Student = require('../models/student.models');
 
 const validating = (req, res, next) => {
-  const { firstname, lastname, email, password, phone } = req.body;
-  if (firstname.length < 3 || lastname.length < 3) {
+  const { username, email, password, institution, degree } = req.body;
+  if (username.length < 3) {
     return res.status(400).json({ message: 'the length of the names must be atleast 3 characters' });
   }
   if (!email.includes('@')) {
@@ -16,25 +16,31 @@ const validating = (req, res, next) => {
   if (password.length < 5) {
     return res.status(400).json({ message: 'The length of the password must be atleast 5 characters' });
   }
-  const phonetest = /^\d{11}$/;
-  if (!phonetest.test(phone)) {
-    return res.status(400).json({ message: 'Invalid phone number. Try again!' });
-  }
   next();
 }
 
 //registering the user 
+<<<<<<< HEAD:routes/student.routes.js
 router.post('/register', async (req, res) => {
   const { username, email, institution,degree ,password} = req.body;
+=======
+router.post('/register', validating, async (req, res) => {
+  const { username, email, password, institution, degree } = req.body;
+>>>>>>> 6630a5bf3e8a579b8f40bd6c8ccfdb10a40c8dd9:routes/index.js
 
   try {
     // Create a new student instance based on the request body
     const hashed = await bcrypt.hash(password, 10);
-
     const newStudent = new Student({
+<<<<<<< HEAD:routes/student.routes.js
 
      username,
       email,  
+=======
+      username,
+      // profilepicture: req.body.profilepicture,
+      email,
+>>>>>>> 6630a5bf3e8a579b8f40bd6c8ccfdb10a40c8dd9:routes/index.js
       password: hashed,
       institution,
       degree
@@ -75,4 +81,19 @@ router.put('/profile/:id', async (req, res) => {
   }
 });
 
+router.get('/search', async (req, res) => {
+  const word = req.query.q;
+  if (!keyword) {
+    return res.status(400).json({ message: 'Query parameter is required.' });
+  }
+
+  try {
+    const regex = new RegExp(word, 'gi');
+    const results = await Startup_listing.find({
+      $or: [
+
+      ]
+    })
+  }
+})
 module.exports = router;
