@@ -7,11 +7,11 @@ const Schema = mongoose.Schema;
 const foundingTeamSchema = new Schema({
     foundingname: {
         type: String,
-        required: true
+        
     },
     role: {
         type: String,
-        required: true
+        
     }
 });
 
@@ -27,11 +27,11 @@ const investorSchema = new Schema({
 const advisoryBoardMemberSchema = new Schema({
     name: {
         type: String,
-        required: true
+        
     },
     profile: {
         type: String,
-        required: true
+        
     }
 });
 
@@ -40,31 +40,31 @@ const advisoryBoardMemberSchema = new Schema({
 const listingSchema = new Schema({
     startupname: {
         type: String,
-        required: true
+        
     },
     logo: {
         type: String,
-        required: true
+        
     },
     foundeddate: {
         type: String,
-        required: true
+        
     },
     headquarters: {
         type: String,
-        required: true
+        
     },
     industrySector: {
         type: String
     },
     businessmodel: {
         type: String,
-        required: true
+        
     },
     services: {
         description: {
             type: String,
-            required: true
+            
         },
         pictures: {
             type: [String],
@@ -94,15 +94,15 @@ const listingSchema = new Schema({
     },
     foundingteam: {
         type: [foundingTeamSchema],
-        required: true
+        
     },
     advisoryboard: {
         type: [advisoryBoardMemberSchema],
-        required: true
+        
     },
     employeecount: {
         type: Number,
-        required: true
+        
     },
     usergrowth: {
         type: String
@@ -115,7 +115,7 @@ const listingSchema = new Schema({
     },
     milestones: {
         type: String,
-        required: true
+        
     },
     customertestimonials: {
         type: String
@@ -128,15 +128,15 @@ const listingSchema = new Schema({
     },
     elevatorpitch: {
         type: String,
-        required: true
+        
     },
     visionstatement: {
         type: String,
-        required: true
+        
     },
     useoffunds: {
         type: String,
-        required: true
+        
     },
     pressreleases: {
         type: [String]
@@ -149,21 +149,22 @@ const listingSchema = new Schema({
     },
     pitchdeck: {
         type: String,
-        required: true
+        
     },
     businessplan: {
         type: String,
-        required: true
+        
     },
     videos: {
         type: String,
-        required: true
+        
     },
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'registered_students',
-        required: true
+        ref: 'Student',
+        
     }
-}, { collection: 'Startup_listing' });
+});
 
-module.exports = mongoose.model('StartupListing', listingSchema);
+const Startup= mongoose.model('Startup', listingSchema);
+module.exports =Startup;

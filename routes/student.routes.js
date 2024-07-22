@@ -1,16 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const { StudentSchema } = require('../models/register_model');
-const { profileSchema } = require('../models/profile_model');
-const { startuplisting } = require('../models/startuplisting_model');
-const Student = mongoose.model('Student', StudentSchema);
-const profile = mongoose.model('Profile', profileSchema);
-const startup = mongoose.model('StartupListing', startuplisting);
 
-//setting validations for the user register form
+const Student = require('../models/student.models');
+
 const validating = (req, res, next) => {
   const { firstname, lastname, email, password, phone } = req.body;
   if (firstname.length < 3 || lastname.length < 3) {
@@ -30,20 +24,20 @@ const validating = (req, res, next) => {
 }
 
 //registering the user 
-router.post('/register', validating, async (req, res) => {
-  const { firstname, lastname, email, password, phone } = req.body;
+router.post('/register', async (req, res) => {
+  const { username, email, institution,degree ,password} = req.body;
 
   try {
     // Create a new student instance based on the request body
     const hashed = await bcrypt.hash(password, 10);
 
     const newStudent = new Student({
-      firstname,
-      lastname,
-      profilepicture: req.body.profilepicture,
-      email,
+
+     username,
+      email,  
       password: hashed,
-      phone
+      institution,
+      degree
     });
     // Save the student data to the database
     const savedStudent = await newStudent.save();
@@ -57,29 +51,7 @@ router.post('/register', validating, async (req, res) => {
   }
 });
 
-router.post('/liststartups/:id', async (req, res) => {
-  const id = req.params.id;
-  const values = req.body;
-  try {
-    const lists = new startup({
-      ...values,
-      createdBy: id
-    });
-    await lists.save();
 
-    res.status(201).json({
-      message: 'Startup listing created successfully',
-      data: lists
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: 'Error creating the listing for your startup!',
-      error: error.message
-    });
-  }
-
-
-});
 
 //setting the profile of the user
 router.put('/profile/:id', async (req, res) => {
@@ -87,7 +59,7 @@ router.put('/profile/:id', async (req, res) => {
     const id = req.params.id;
     const updatedata = req.body;
 
-    const updatedStudent = await profile.findByIdAndUpdate(
+    const updatedStudent = await Student.findByIdAndUpdate(
       { _id: id },
       { $set: updatedata },
       { new: true }
