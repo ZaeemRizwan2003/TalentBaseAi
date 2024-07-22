@@ -89,6 +89,10 @@ const profileSchema = new Schema({
     },
     vision_goals: {
         type: [String]
+    },
+    opento: {
+        type: [String],
+        enum: ['jobs', 'internships', 'projects', 'collaborations', 'funding', 'acquisition']
     }
 }, { collection: 'registered_students' });
 

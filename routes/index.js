@@ -12,8 +12,8 @@ const startup = mongoose.model('StartupListing', startuplisting);
 
 //setting validations for the user register form
 const validating = (req, res, next) => {
-  const { firstname, lastname, email, password, phone } = req.body;
-  if (firstname.length < 3 || lastname.length < 3) {
+  const { username, email, password, institution, degree } = req.body;
+  if (username.length < 3) {
     return res.status(400).json({ message: 'the length of the names must be atleast 3 characters' });
   }
   if (!email.includes('@')) {
@@ -22,28 +22,23 @@ const validating = (req, res, next) => {
   if (password.length < 5) {
     return res.status(400).json({ message: 'The length of the password must be atleast 5 characters' });
   }
-  const phonetest = /^\d{11}$/;
-  if (!phonetest.test(phone)) {
-    return res.status(400).json({ message: 'Invalid phone number. Try again!' });
-  }
   next();
 }
 
 //registering the user 
 router.post('/register', validating, async (req, res) => {
-  const { firstname, lastname, email, password, phone } = req.body;
+  const { username, email, password, institution, degree } = req.body;
 
   try {
     // Create a new student instance based on the request body
     const hashed = await bcrypt.hash(password, 10);
-
     const newStudent = new Student({
-      firstname,
-      lastname,
-      profilepicture: req.body.profilepicture,
+      username,
+      // profilepicture: req.body.profilepicture,
       email,
       password: hashed,
-      phone
+      institution,
+      degree
     });
     // Save the student data to the database
     const savedStudent = await newStudent.save();
@@ -103,4 +98,19 @@ router.put('/profile/:id', async (req, res) => {
   }
 });
 
+router.get('/search', async (req, res) => {
+  const word = req.query.q;
+  if (!keyword) {
+    return res.status(400).json({ message: 'Query parameter is required.' });
+  }
+
+  try {
+    const regex = new RegExp(word, 'gi');
+    const results = await Startup_listing.find({
+      $or: [
+
+      ]
+    })
+  }
+})
 module.exports = router;
