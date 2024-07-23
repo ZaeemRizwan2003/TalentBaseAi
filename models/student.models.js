@@ -65,6 +65,9 @@ const studentSchema = new Schema({
   awards: {
     type: [String]
   },
+  opento: {
+    type: [String]
+  },
   Advisors: [
     {
       Name: {
