@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const LearningPath = require('../models/learningPath.model');
+const LearningPath = require('../models/learningpath.models');
 
 // Create a new learning path
-router.post('/learning-path', async (req, res) => {
+router.post('/add', async (req, res) => {
   const { programSelection, streamSelection, courseContents, onlineTest, certification } = req.body;
 
   try {
@@ -29,7 +29,7 @@ router.post('/learning-path', async (req, res) => {
 });
 
 // Get a learning path
-router.get('/learning-path/:id', async (req, res) => {
+router.get('/get/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -52,7 +52,7 @@ router.get('/learning-path/:id', async (req, res) => {
 });
 
 // Update a learning path
-router.put('/learning-path/:id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
 

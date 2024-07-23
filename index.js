@@ -12,7 +12,12 @@ const startupRoutes = require('./routes/startup.routes.js');
 const ecommerceRoutes = require('./routes/ecommerce.routes.js'); 
 const digitalServiceRoutes = require('./routes/digitalservice.routes.js'); 
 const podcastRoutes = require('./routes/podcast.routes.js'); 
+
+
+const learningpathRoutes = require ('./routes/learningpath.routes.js')
+
 const userRoutes=require('./routes/user.routes.js');
+
 var app = express();
 dotenv.config();
 app.use("*", bodyParser.json());
@@ -28,6 +33,7 @@ app.use('/ecommerce', ecommerceRoutes);
 app.use('/podcast', podcastRoutes);
 app.use('/digitalservice',digitalServiceRoutes);
 app.use('/users',userRoutes);
+app.use('/learningpath',learningpathRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
