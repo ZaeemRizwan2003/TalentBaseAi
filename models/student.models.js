@@ -2,17 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
-  username: {
-    type: String,
-  },
-  email: {
-    type: String,
-    unique: true,
-    
-  },
-  password: {
-    type: String,
-    
+
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserInfo',
+    required: true
   },
   institution: {
     type: String,
@@ -22,7 +16,6 @@ const studentSchema = new Schema({
   },
   fullname: {
     type: String,
-    
   },
   profilepicture: {
     type: String,
@@ -33,7 +26,6 @@ const studentSchema = new Schema({
   },
   linkedin: {
     type: String,
-    
   },
   personalwebsite: {
     type: String
@@ -41,16 +33,13 @@ const studentSchema = new Schema({
   location: {
     country: {
       type: String,
-      
     },
     city: {
       type: String,
-      
     }
   },
   Currentposition: {
     type: String,
-    
   },
   previousexperience: {
     type: String,
@@ -59,15 +48,12 @@ const studentSchema = new Schema({
     {
       degree: {
         type: String,
-        
       },
       institution: {
         type: String,
-        
       },
       graduationYear: {
         type: String,
-        
       }
     }
   ],
@@ -78,6 +64,9 @@ const studentSchema = new Schema({
     type: [String]
   },
   awards: {
+    type: [String]
+  },
+  opento: {
     type: [String]
   },
   Advisors: [
@@ -98,12 +87,15 @@ const studentSchema = new Schema({
   },
   biography: {
     type: String,
-    
   },
   vision_goals: {
     type: [String]
+  },
+  opento: {
+    type: [String],
+    enum: ['jobs', 'internships', 'projects', 'collaborations', 'funding', 'acquisition']
   }
 });
 
 const Student = mongoose.model('Student', studentSchema);
-module.exports=Student;
+module.exports = Student;

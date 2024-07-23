@@ -1,0 +1,103 @@
+[
+    {
+      "title": "Understanding JavaScript Closures",
+      "category": "Programming",
+      "body": "A deep dive into closures in JavaScript and how to use them effectively.",
+      "subHeadings": ["Introduction", "How Closures Work", "Practical Examples"],
+      "tags": ["javascript", "closures"],
+      "keywords": ["javascript", "programming", "closures"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1234",
+      "comments": ["Great explanation!", "Helped me a lot."]
+    },
+    {
+      "title": "10 Tips for a Healthy Lifestyle",
+      "category": "Health",
+      "body": "Simple and effective tips to maintain a healthy lifestyle.",
+      "subHeadings": ["Introduction", "Healthy Eating", "Exercise", "Mental Health"],
+      "tags": ["health", "lifestyle"],
+      "keywords": ["health", "wellness", "lifestyle"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1235",
+      "comments": ["Very helpful tips!", "Loved the mental health section."]
+    },
+    {
+      "title": "The Future of Artificial Intelligence",
+      "category": "Technology",
+      "body": "Exploring the advancements and future possibilities of AI.",
+      "subHeadings": ["Introduction", "Current State", "Future Predictions"],
+      "tags": ["AI", "technology"],
+      "keywords": ["artificial intelligence", "technology", "future"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1236",
+      "comments": ["Fascinating read!", "Can't wait to see what's next."]
+    },
+    {
+      "title": "Travel Guide: Exploring Japan",
+      "category": "Travel",
+      "body": "A comprehensive guide to traveling in Japan.",
+      "subHeadings": ["Introduction", "Best Places to Visit", "Travel Tips"],
+      "tags": ["travel", "Japan"],
+      "keywords": ["travel guide", "Japan", "tourism"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1237",
+      "comments": ["Japan is amazing!", "Thanks for the tips!"]
+    },
+    {
+      "title": "Mastering React Hooks",
+      "category": "Programming",
+      "body": "An in-depth look at React hooks and how to use them.",
+      "subHeadings": ["Introduction", "useState", "useEffect", "Custom Hooks"],
+      "tags": ["react", "hooks"],
+      "keywords": ["react", "programming", "hooks"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1238",
+      "comments": ["Great tutorial!", "Hooks make things so much easier."]
+    },
+    {
+      "title": "Financial Planning for Beginners",
+      "category": "Finance",
+      "body": "A beginner's guide to managing finances and planning for the future.",
+      "subHeadings": ["Introduction", "Budgeting", "Investing", "Saving Tips"],
+      "tags": ["finance", "planning"],
+      "keywords": ["financial planning", "budgeting", "investing"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1239",
+      "comments": ["Very useful!", "I learned a lot about budgeting."]
+    },
+    {
+      "title": "The Benefits of Meditation",
+      "category": "Health",
+      "body": "How meditation can improve your mental and physical health.",
+      "subHeadings": ["Introduction", "Mental Benefits", "Physical Benefits"],
+      "tags": ["meditation", "health"],
+      "keywords": ["meditation", "mental health", "well-being"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1240",
+      "comments": ["Meditation changed my life!", "Great article."]
+    },
+    {
+      "title": "A Beginner's Guide to Photography",
+      "category": "Photography",
+      "body": "Basic tips and techniques for aspiring photographers.",
+      "subHeadings": ["Introduction", "Camera Basics", "Composition", "Lighting"],
+      "tags": ["photography", "beginners"],
+      "keywords": ["photography", "camera", "composition"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1241",
+      "comments": ["Very helpful for beginners.", "I learned a lot."]
+    },
+    {
+      "title": "Exploring the World of Cryptocurrency",
+      "category": "Finance",
+      "body": "An introduction to cryptocurrencies and their potential impact.",
+      "subHeadings": ["Introduction", "What is Cryptocurrency?", "Investment Tips"],
+      "tags": ["cryptocurrency", "finance"],
+      "keywords": ["cryptocurrency", "blockchain", "investment"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1242",
+      "comments": ["Interesting read!", "Cryptocurrency is the future."]
+    },
+    {
+      "title": "The Art of Minimalist Living",
+      "category": "Lifestyle",
+      "body": "How to adopt a minimalist lifestyle and its benefits.",
+      "subHeadings": ["Introduction", "Decluttering", "Minimalist Mindset"],
+      "tags": ["minimalism", "lifestyle"],
+      "keywords": ["minimalism", "decluttering", "simple living"],
+      "authorId": "60c72b2f9b1d4c1f8c8f1243",
+      "comments": ["Minimalism changed my life!", "Great tips."]
+    }
+  ]
+  
