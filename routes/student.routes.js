@@ -47,15 +47,6 @@ router.get('/profile/:userId', async (req, res) => {
             return res.status(404).json({ message: 'Profile not found' });
         }
 
-        res.status(200).json({
-            message: 'Profile retrieved successfully',
-            data: studentProfile
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Failed to retrieve profile',
-            error: error.message
-        });
     }
 });
 
