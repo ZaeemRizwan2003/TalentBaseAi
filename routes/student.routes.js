@@ -4,7 +4,6 @@ const User = require('../models/user.models');
 const Student = require('../models/student.models');
 const mongoose = require('mongoose');
 
-
 router.post('/profile/:userId', async (req, res) => {
     const { userId } = req.params;
     const studentData = req.body;
