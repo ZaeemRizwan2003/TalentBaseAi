@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Startup=require('../models/startup.models')
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+const Startup = require('../models/startup.models');
+
+// GET endpoint for listing all startups
+router.get('/', async (req, res) => {
+  try {
+    const startups = await Startup.find();
+    res.status(200).json(startups);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching startup listings!', error: error.message });
+  }
 });
+
+// POST endpoint for creating a new startup listing
 router.post('/liststartups/:id', async (req, res) => {
   const id = req.params.id;
   const values = req.body;
@@ -25,7 +33,51 @@ router.post('/liststartups/:id', async (req, res) => {
       error: error.message
     });
   }
-
-
 });
+
+// PUT endpoint for updating a startup listing
+router.put('/liststartups/:id', async (req, res) => {
+  const id = req.params.id;
+  const values = req.body;
+  try {
+    const updatedStartup = await Startup.findByIdAndUpdate(id, values, { new: true });
+
+    if (!updatedStartup) {
+      return res.status(404).json({ message: 'Startup listing not found!' });
+    }
+
+    res.status(200).json({
+      message: 'Startup listing updated successfully',
+      data: updatedStartup
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error updating the listing for your startup!',
+      error: error.message
+    });
+  }
+});
+
+// DELETE endpoint for deleting a startup listing
+router.delete('/liststartups/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedStartup = await Startup.findByIdAndDelete(id);
+
+    if (!deletedStartup) {
+      return res.status(404).json({ message: 'Startup listing not found!' });
+    }
+
+    res.status(200).json({
+      message: 'Startup listing deleted successfully',
+      data: deletedStartup
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error deleting the listing for your startup!',
+      error: error.message
+    });
+  }
+});
+
 module.exports = router;
