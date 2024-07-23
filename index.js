@@ -34,6 +34,8 @@ app.use('/podcast', podcastRoutes);
 app.use('/digitalservice',digitalServiceRoutes);
 app.use('/users',userRoutes);
 app.use('/learningpath',learningpathRoutes);
+app.use('/startup',startupRoutes);
+app.use('/student',studentRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
