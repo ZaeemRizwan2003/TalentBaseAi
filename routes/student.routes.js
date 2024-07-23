@@ -20,27 +20,16 @@ const validating = (req, res, next) => {
 }
 
 //registering the user 
-<<<<<<< HEAD:routes/student.routes.js
-router.post('/register', async (req, res) => {
-  const { username, email, institution,degree ,password} = req.body;
-=======
 router.post('/register', validating, async (req, res) => {
   const { username, email, password, institution, degree } = req.body;
->>>>>>> 6630a5bf3e8a579b8f40bd6c8ccfdb10a40c8dd9:routes/index.js
 
   try {
     // Create a new student instance based on the request body
     const hashed = await bcrypt.hash(password, 10);
     const newStudent = new Student({
-<<<<<<< HEAD:routes/student.routes.js
-
-     username,
-      email,  
-=======
       username,
       // profilepicture: req.body.profilepicture,
       email,
->>>>>>> 6630a5bf3e8a579b8f40bd6c8ccfdb10a40c8dd9:routes/index.js
       password: hashed,
       institution,
       degree
@@ -72,7 +61,7 @@ router.put('/profile/:id', async (req, res) => {
     );
 
     if (!updatedStudent) {
-      res.status(404).json({ message: 'User not found. Try Again' });
+      return res.status(404).json({ message: 'User not found. Try Again' });
     }
     res.status(200).json(updatedStudent);
   } catch (err) {
@@ -81,19 +70,19 @@ router.put('/profile/:id', async (req, res) => {
   }
 });
 
-router.get('/search', async (req, res) => {
-  const word = req.query.q;
-  if (!keyword) {
-    return res.status(400).json({ message: 'Query parameter is required.' });
-  }
+// router.get('/search', async (req, res) => {
+//   const word = req.query.q;
+//   if (!keyword) {
+//     return res.status(400).json({ message: 'Query parameter is required.' });
+//   }
 
-  try {
-    const regex = new RegExp(word, 'gi');
-    const results = await Startup_listing.find({
-      $or: [
+//   try {
+//     const regex = new RegExp(word, 'gi');
+//     const results = await Startup_listing.find({
+//       $or: [
 
-      ]
-    })
-  }
-})
+//       ]
+//     })
+//   }
+// })
 module.exports = router;
