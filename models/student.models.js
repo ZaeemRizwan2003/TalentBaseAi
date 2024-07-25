@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
+
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserInfo',
@@ -89,6 +90,10 @@ const studentSchema = new Schema({
   },
   vision_goals: {
     type: [String]
+  },
+  opento: {
+    type: [String],
+    enum: ['jobs', 'internships', 'projects', 'collaborations', 'funding', 'acquisition']
   }
 });
 
