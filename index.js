@@ -15,6 +15,10 @@ const startupRoutes = require('./routes/startup.routes.js');
 const ecommerceRoutes = require('./routes/ecommerce.routes.js'); 
 const digitalServiceRoutes = require('./routes/digitalservice.routes.js'); 
 const podcastRoutes = require('./routes/podcast.routes.js'); 
+const courseRoutes = require('./routes/course.routes');
+const certificationRoutes = require('./routes/certification.routes');
+const contactRoutes = require('./routes/contact.routes.js')
+const updateRoutes = require('./routes/updates.routes.js')
 
 const learningpathRoutes = require ('./routes/learningpath.routes.js')
 
@@ -29,12 +33,16 @@ mongoose.connect(uri)
   .then(() => console.log("Successful connection to MongoDB"))
   .catch(err => console.error('Error occurred in connecting to MongoDB', err));
 
+app.use('/startup', startupRoutes);
+app.use('/student', studentRoutes);
 app.use('/blog', blogRoutes);
 app.use('/ecommerce', ecommerceRoutes); 
 app.use('/podcast', podcastRoutes);
 app.use('/digitalservice',digitalServiceRoutes);
 app.use('/users',userRoutes);
 app.use('/learningpath',learningpathRoutes);
+app.use('/courses', courseRoutes);
+app.use('/certifications', certificationRoutes);
 app.use('/startup',startupRoutes);
 app.use('/student',studentRoutes);
 app.use('/contact', contactRoutes);

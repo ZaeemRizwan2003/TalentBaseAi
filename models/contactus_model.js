@@ -10,9 +10,9 @@ const contactSchema = new Schema({
         type: String
     },
     postedby: {
-        // type: Schema.Types.ObjectId,
-        // ref: 'students'+\
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 
