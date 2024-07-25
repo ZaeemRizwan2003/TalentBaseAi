@@ -122,4 +122,27 @@ router.delete('/blogs/:id', async (req, res) => {
   });
 
 
+// search blogs based on title
+router.post('/blogs/search', async (req, res) => {
+  console.log('Received search request with title:', req.query.title);
+  try {
+    // Check if title is an array or a single string
+    const title = req.query.title;
+
+    if (!title) {
+      return res.status(400).json({ message: 'Title query parameter is required' });
+    }
+
+    // Use regular expression for partial matching
+    const blogs = await Blog.find({ title: { $regex: title, $options: 'i' } });
+    return res.status(200).json(blogs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+
+
 module.exports = router;

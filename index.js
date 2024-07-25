@@ -6,9 +6,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-const contactRoutes = require('./routes/contact.routes.js')
-const updateRoutes = require('./routes/updates.routes.js')
 const blogRoutes=require('./routes/blog.route.js')
 const studentRoutes = require('./routes/student.routes.js');
 const startupRoutes = require('./routes/startup.routes.js');
