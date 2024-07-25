@@ -161,7 +161,8 @@ const listingSchema = new Schema({
     },
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'Student',
+        ref: 'User',
+        required: true
         
     }
 });
