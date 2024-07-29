@@ -1,0 +1,539 @@
+[
+    {
+    
+        "startupname": "Tech Innovators",
+        "logo": "https://example.com/logo1.png",
+        "foundeddate": "2018-03-15",
+        "headquarters": "San Francisco, CA",
+        "industrySector": "Technology",
+        "businessmodel": "B2B",
+        "services": {
+            "description": "Providing innovative tech solutions.",
+            "pictures": ["https://example.com/service1.png", "https://example.com/service2.png"]
+        },
+        "targetmarket": ["Enterprises", "SMBs"],
+        "fundingstage": "Series A",
+        "fundingraised": 5000000,
+        "Revenue": {
+            "currentrevenue": "1M",
+            "revenueprojection": "5M"
+        },
+        "Investors": [
+            {
+                "investorname": "Alice Ventures",
+                "investingfirm": "Alice Capital"
+            },
+            {
+                "investorname": "Bob Investments",
+                "investingfirm": "Bob Partners"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "John Doe",
+                "role": "CEO"
+            },
+            {
+                "foundingname": "Jane Smith",
+                "role": "CTO"
+            }
+        ],
+        "advisoryboard": [
+            {
+                "name": "Dr. Emma Wilson",
+                "profile": "Tech Expert"
+            }
+        ],
+        "employeecount": 50,
+        "usergrowth": "20% MoM",
+        "customeracquisition": "500 new customers/month",
+        "retentionrates": "90%",
+        "milestones": "Launched MVP, Secured Series A funding",
+        "customertestimonials": "Our platform has significantly improved our workflow.",
+        "marketopportunity": "Expanding into emerging tech markets.",
+        "competitivelandscape": "Competing with major tech firms.",
+        "elevatorpitch": "Tech Innovators is revolutionizing enterprise tech solutions with cutting-edge technology.",
+        "visionstatement": "To be the leading provider of innovative tech solutions worldwide.",
+        "useoffunds": "Product development, marketing expansion",
+        "pressreleases": ["https://example.com/press1.pdf"],
+        "mediacoverage": ["https://example.com/media1.png"],
+        "awardsrecognition": ["Best Startup of the Year 2023"],
+        "pitchdeck": "https://example.com/pitchdeck.pdf",
+        "businessplan": "https://example.com/businessplan.pdf",
+        "videos": "https://example.com/promo.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c1"
+    },
+    {
+        "startupname": "Eco Solutions",
+        "logo": "https://example.com/logo2.png",
+        "foundeddate": "2019-06-22",
+        "headquarters": "New York, NY",
+        "industrySector": "Environment",
+        "businessmodel": "B2C",
+        "services": {
+            "description": "Sustainable and eco-friendly products.",
+            "pictures": ["https://example.com/service3.png"]
+        },
+        "targetmarket": ["Consumers"],
+        "fundingstage": "Seed",
+        "fundingraised": 2000000,
+        "Revenue": {
+            "currentrevenue": "500K",
+            "revenueprojection": "2M"
+        },
+        "Investors": [
+            {
+                "investorname": "Green Ventures",
+                "investingfirm": "Eco Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Alice Green",
+                "role": "Founder"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 20,
+        "usergrowth": "15% MoM",
+        "customeracquisition": "200 new customers/month",
+        "retentionrates": "85%",
+        "milestones": "Product launch, Secured Seed funding",
+        "customertestimonials": "Fantastic eco-friendly products with great quality.",
+        "marketopportunity": "Growing demand for sustainable products.",
+        "competitivelandscape": "Competing with other green product companies.",
+        "elevatorpitch": "Eco Solutions provides top-quality, sustainable products for the eco-conscious consumer.",
+        "visionstatement": "To make eco-friendly products accessible to everyone.",
+        "useoffunds": "Product development, scaling operations",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck2.pdf",
+        "businessplan": "https://example.com/businessplan2.pdf",
+        "videos": "https://example.com/promo2.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c2"
+    },
+    {
+        "startupname": "Health First",
+        "logo": "https://example.com/logo3.png",
+        "foundeddate": "2020-01-10",
+        "headquarters": "Austin, TX",
+        "industrySector": "Healthcare",
+        "businessmodel": "B2B",
+        "services": {
+            "description": "Telemedicine solutions for healthcare providers.",
+            "pictures": ["https://example.com/service4.png", "https://example.com/service5.png"]
+        },
+        "targetmarket": ["Hospitals", "Clinics"],
+        "fundingstage": "Series B",
+        "fundingraised": 8000000,
+        "Revenue": {
+            "currentrevenue": "2M",
+            "revenueprojection": "10M"
+        },
+        "Investors": [
+            {
+                "investorname": "MedTech Fund",
+                "investingfirm": "Health Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Robert White",
+                "role": "CEO"
+            },
+            {
+                "foundingname": "Lisa Black",
+                "role": "COO"
+            }
+        ],
+        "advisoryboard": [
+            {
+                "name": "Dr. John Smith",
+                "profile": "Medical Advisor"
+            }
+        ],
+        "employeecount": 75,
+        "usergrowth": "25% YoY",
+        "customeracquisition": "150 new accounts/month",
+        "retentionrates": "88%",
+        "milestones": "Expanded product line, Series B funding secured",
+        "customertestimonials": "Our patient management has never been smoother.",
+        "marketopportunity": "Increasing demand for telehealth services.",
+        "competitivelandscape": "Competing with established telemedicine platforms.",
+        "elevatorpitch": "Health First is enhancing healthcare with cutting-edge telemedicine solutions.",
+        "visionstatement": "To become the leading provider of telemedicine solutions globally.",
+        "useoffunds": "Product enhancements, market expansion",
+        "pressreleases": ["https://example.com/press2.pdf"],
+        "mediacoverage": ["https://example.com/media2.png"],
+        "awardsrecognition": ["Top HealthTech Startup 2023"],
+        "pitchdeck": "https://example.com/pitchdeck3.pdf",
+        "businessplan": "https://example.com/businessplan3.pdf",
+        "videos": "https://example.com/promo3.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c3"
+    },
+    {
+        "startupname": "EduTech Pro",
+        "logo": "https://example.com/logo4.png",
+        "foundeddate": "2021-04-05",
+        "headquarters": "Boston, MA",
+        "industrySector": "Education",
+        "businessmodel": "B2C",
+        "services": {
+            "description": "Online learning platforms for students.",
+            "pictures": ["https://example.com/service6.png"]
+        },
+        "targetmarket": ["Students", "Educational Institutions"],
+        "fundingstage": "Series A",
+        "fundingraised": 3500000,
+        "Revenue": {
+            "currentrevenue": "750K",
+            "revenueprojection": "3M"
+        },
+        "Investors": [
+            {
+                "investorname": "EdVentures",
+                "investingfirm": "Edu Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Sarah Johnson",
+                "role": "Founder"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 30,
+        "usergrowth": "10% MoM",
+        "customeracquisition": "100 new users/week",
+        "retentionrates": "80%",
+        "milestones": "Platform launch, Series A funding",
+        "customertestimonials": "The platform has greatly improved our learning experience.",
+        "marketopportunity": "Expanding online education market.",
+        "competitivelandscape": "Facing competition from other edtech startups.",
+        "elevatorpitch": "EduTech Pro is transforming education with innovative online learning tools.",
+        "visionstatement": "To revolutionize education with accessible and effective online learning.",
+        "useoffunds": "Platform development, user acquisition",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck4.pdf",
+        "businessplan": "https://example.com/businessplan4.pdf",
+        "videos": "https://example.com/promo4.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c4"
+    },
+    {
+        "startupname": "FinTech Plus",
+        "logo": "https://example.com/logo5.png",
+        "foundeddate": "2022-09-30",
+        "headquarters": "Chicago, IL",
+        "industrySector": "Finance",
+        "businessmodel": "B2B",
+        "services": {
+            "description": "Financial management solutions for businesses.",
+            "pictures": ["https://example.com/service7.png"]
+        },
+        "targetmarket": ["Small Businesses", "Large Enterprises"],
+        "fundingstage": "Seed",
+        "fundingraised": 1500000,
+        "Revenue": {
+            "currentrevenue": "300K",
+            "revenueprojection": "1.5M"
+        },
+        "Investors": [
+            {
+                "investorname": "Finance Ventures",
+                "investingfirm": "FinTech Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Michael Lee",
+                "role": "CEO"
+            },
+            {
+                "foundingname": "Sophia Brown",
+                "role": "CFO"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 40,
+        "usergrowth": "20% YoY",
+        "customeracquisition": "80 new clients/month",
+        "retentionrates": "87%",
+        "milestones": "Secured Seed funding, Launched beta version",
+        "customertestimonials": "A game-changer for financial management in our company.",
+        "marketopportunity": "Growing need for integrated financial solutions.",
+        "competitivelandscape": "Competing with other fintech startups.",
+        "elevatorpitch": "FinTech Plus provides top-tier financial management solutions for businesses of all sizes.",
+        "visionstatement": "To be the leading provider of innovative financial management tools.",
+        "useoffunds": "Development, marketing, and expansion",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck5.pdf",
+        "businessplan": "https://example.com/businessplan5.pdf",
+        "videos": "https://example.com/promo5.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c5"
+    },
+    {
+        "startupname": "AgriTech Solutions",
+        "logo": "https://example.com/logo6.png",
+        "foundeddate": "2017-11-18",
+        "headquarters": "Seattle, WA",
+        "industrySector": "Agriculture",
+        "businessmodel": "B2B",
+        "services": {
+            "description": "Technology solutions for modern agriculture.",
+            "pictures": ["https://example.com/service8.png"]
+        },
+        "targetmarket": ["Farmers", "Agricultural Businesses"],
+        "fundingstage": "Series B",
+        "fundingraised": 6000000,
+        "Revenue": {
+            "currentrevenue": "1.2M",
+            "revenueprojection": "4M"
+        },
+        "Investors": [
+            {
+                "investorname": "AgriFund",
+                "investingfirm": "AgriTech Ventures"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "William Davis",
+                "role": "Founder"
+            }
+        ],
+        "advisoryboard": [
+            {
+                "name": "Dr. Nancy Adams",
+                "profile": "Agricultural Expert"
+            }
+        ],
+        "employeecount": 60,
+        "usergrowth": "30% YoY",
+        "customeracquisition": "250 new clients/year",
+        "retentionrates": "82%",
+        "milestones": "Expanded product line, Series B funding",
+        "customertestimonials": "Their technology has greatly improved our farming efficiency.",
+        "marketopportunity": "Expanding agricultural technology market.",
+        "competitivelandscape": "Competing with established agritech firms.",
+        "elevatorpitch": "AgriTech Solutions offers cutting-edge technology for modern agriculture.",
+        "visionstatement": "To advance agriculture through innovative technology.",
+        "useoffunds": "Product development, market expansion",
+        "pressreleases": ["https://example.com/press3.pdf"],
+        "mediacoverage": ["https://example.com/media3.png"],
+        "awardsrecognition": ["Best Agritech Innovation 2023"],
+        "pitchdeck": "https://example.com/pitchdeck6.pdf",
+        "businessplan": "https://example.com/businessplan6.pdf",
+        "videos": "https://example.com/promo6.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c6"
+    },
+    {
+        "startupname": "Retail Tech",
+        "logo": "https://example.com/logo7.png",
+        "foundeddate": "2019-02-12",
+        "headquarters": "Los Angeles, CA",
+        "industrySector": "Retail",
+        "businessmodel": "B2B",
+        "services": {
+            "description": "Technology solutions for retail management.",
+            "pictures": ["https://example.com/service9.png"]
+        },
+        "targetmarket": ["Retailers", "E-commerce Platforms"],
+        "fundingstage": "Seed",
+        "fundingraised": 1000000,
+        "Revenue": {
+            "currentrevenue": "200K",
+            "revenueprojection": "1M"
+        },
+        "Investors": [
+            {
+                "investorname": "Retail Ventures",
+                "investingfirm": "Retail Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Emily Garcia",
+                "role": "CEO"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 25,
+        "usergrowth": "18% MoM",
+        "customeracquisition": "150 new clients/month",
+        "retentionrates": "85%",
+        "milestones": "Product beta launch, Secured Seed funding",
+        "customertestimonials": "Our retail operations have become much more efficient.",
+        "marketopportunity": "Growing need for retail technology solutions.",
+        "competitivelandscape": "Facing competition from other retail tech startups.",
+        "elevatorpitch": "Retail Tech provides advanced technology solutions for modern retail management.",
+        "visionstatement": "To revolutionize retail operations with cutting-edge technology.",
+        "useoffunds": "Product development, marketing",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck7.pdf",
+        "businessplan": "https://example.com/businessplan7.pdf",
+        "videos": "https://example.com/promo7.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c7"
+    },
+    {
+        "startupname": "Auto Drive",
+        "logo": "https://example.com/logo8.png",
+        "foundeddate": "2015-07-21",
+        "headquarters": "Detroit, MI",
+        "industrySector": "Automotive",
+        "businessmodel": "B2C",
+        "services": {
+            "description": "Autonomous driving solutions.",
+            "pictures": ["https://example.com/service10.png"]
+        },
+        "targetmarket": ["Car Manufacturers", "Consumers"],
+        "fundingstage": "Series C",
+        "fundingraised": 12000000,
+        "Revenue": {
+            "currentrevenue": "5M",
+            "revenueprojection": "20M"
+        },
+        "Investors": [
+            {
+                "investorname": "Auto Ventures",
+                "investingfirm": "Auto Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "James Wilson",
+                "role": "CEO"
+            }
+        ],
+        "advisoryboard": [
+            {
+                "name": "Dr. Sarah Martinez",
+                "profile": "Automotive Expert"
+            }
+        ],
+        "employeecount": 100,
+        "usergrowth": "35% YoY",
+        "customeracquisition": "500 new customers/month",
+        "retentionrates": "90%",
+        "milestones": "Released first product, Series C funding",
+        "customertestimonials": "Their autonomous driving tech is top-notch.",
+        "marketopportunity": "Rapid growth in autonomous vehicle technology.",
+        "competitivelandscape": "Competing with leading automotive tech companies.",
+        "elevatorpitch": "Auto Drive is leading the way in autonomous driving technology.",
+        "visionstatement": "To transform the future of driving with autonomous technology.",
+        "useoffunds": "Product scaling, market expansion",
+        "pressreleases": ["https://example.com/press4.pdf"],
+        "mediacoverage": ["https://example.com/media4.png"],
+        "awardsrecognition": ["Innovation in Automotive Tech 2023"],
+        "pitchdeck": "https://example.com/pitchdeck8.pdf",
+        "businessplan": "https://example.com/businessplan8.pdf",
+        "videos": "https://example.com/promo8.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c8"
+    },
+    {
+        "startupname": "Travel Smart",
+        "logo": "https://example.com/logo9.png",
+        "foundeddate": "2021-08-30",
+        "headquarters": "Miami, FL",
+        "industrySector": "Travel",
+        "businessmodel": "B2C",
+        "services": {
+            "description": "Smart travel solutions for modern travelers.",
+            "pictures": ["https://example.com/service11.png"]
+        },
+        "targetmarket": ["Travelers", "Tourism Agencies"],
+        "fundingstage": "Series A",
+        "fundingraised": 3000000,
+        "Revenue": {
+            "currentrevenue": "600K",
+            "revenueprojection": "2.5M"
+        },
+        "Investors": [
+            {
+                "investorname": "Travel Ventures",
+                "investingfirm": "Travel Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "Sophia Turner",
+                "role": "Founder"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 35,
+        "usergrowth": "22% YoY",
+        "customeracquisition": "120 new users/month",
+        "retentionrates": "82%",
+        "milestones": "Launched app, Secured Series A funding",
+        "customertestimonials": "Their travel solutions have made planning much easier.",
+        "marketopportunity": "Increasing demand for smart travel solutions.",
+        "competitivelandscape": "Competing with other travel tech startups.",
+        "elevatorpitch": "Travel Smart offers innovative solutions for a seamless travel experience.",
+        "visionstatement": "To redefine travel with smart and efficient solutions.",
+        "useoffunds": "Product development, user acquisition",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck9.pdf",
+        "businessplan": "https://example.com/businessplan9.pdf",
+        "videos": "https://example.com/promo9.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c9"
+    },
+    {
+        "startupname": "Foodie App",
+        "logo": "https://example.com/logo10.png",
+        "foundeddate": "2022-12-01",
+        "headquarters": "San Diego, CA",
+        "industrySector": "Food & Beverage",
+        "businessmodel": "B2C",
+        "services": {
+            "description": "Food delivery and restaurant discovery app.",
+            "pictures": ["https://example.com/service12.png"]
+        },
+        "targetmarket": ["Food Lovers", "Restaurants"],
+        "fundingstage": "Seed",
+        "fundingraised": 1800000,
+        "Revenue": {
+            "currentrevenue": "400K",
+            "revenueprojection": "1.8M"
+        },
+        "Investors": [
+            {
+                "investorname": "Food Ventures",
+                "investingfirm": "Food Capital"
+            }
+        ],
+        "foundingteam": [
+            {
+                "foundingname": "David Brown",
+                "role": "CEO"
+            }
+        ],
+        "advisoryboard": [],
+        "employeecount": 25,
+        "usergrowth": "28% MoM",
+        "customeracquisition": "300 new users/month",
+        "retentionrates": "87%",
+        "milestones": "App launch, Secured Seed funding",
+        "customertestimonials": "The app has made discovering and ordering food so easy.",
+        "marketopportunity": "Growing food delivery market.",
+        "competitivelandscape": "Competing with other food delivery apps.",
+        "elevatorpitch": "Foodie App connects you with your favorite restaurants and makes food delivery effortless.",
+        "visionstatement": "To become the go-to app for food lovers everywhere.",
+        "useoffunds": "Marketing, technology improvements",
+        "pressreleases": [],
+        "mediacoverage": [],
+        "awardsrecognition": [],
+        "pitchdeck": "https://example.com/pitchdeck10.pdf",
+        "businessplan": "https://example.com/businessplan10.pdf",
+        "videos": "https://example.com/promo10.mp4",
+        "createdBy": "60b8d295f1a0b842e871b2c0"
+    }
+]

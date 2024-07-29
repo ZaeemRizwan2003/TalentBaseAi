@@ -6,16 +6,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-const contactRoutes = require('./routes/contact.routes.js')
-const updateRoutes = require('./routes/updates.routes.js')
 const blogRoutes = require('./routes/blog.route.js')
 const studentRoutes = require('./routes/student.routes.js');
 const startupRoutes = require('./routes/startup.routes.js');
 const ecommerceRoutes = require('./routes/ecommerce.routes.js');
 const digitalServiceRoutes = require('./routes/digitalservice.routes.js');
 const podcastRoutes = require('./routes/podcast.routes.js');
-
+const courseRoutes = require('./routes/course.routes');
+const certificationRoutes = require('./routes/certification.routes');
+const contactRoutes = require('./routes/contact.routes.js')
+const updateRoutes = require('./routes/updates.routes.js')
+const industryRoutes = require('./routes/industry.routes.js');
 const learningpathRoutes = require('./routes/learningpath.routes.js')
 
 const userRoutes = require('./routes/user.routes.js');
@@ -29,17 +30,21 @@ mongoose.connect(uri)
   .then(() => console.log("Successful connection to MongoDB"))
   .catch(err => console.error('Error occurred in connecting to MongoDB', err));
 
+app.use('/startup', startupRoutes);
+app.use('/student', studentRoutes);
 app.use('/blog', blogRoutes);
 app.use('/ecommerce', ecommerceRoutes);
 app.use('/podcast', podcastRoutes);
 app.use('/digitalservice', digitalServiceRoutes);
 app.use('/users', userRoutes);
 app.use('/learningpath', learningpathRoutes);
+app.use('/courses', courseRoutes);
+app.use('/certifications', certificationRoutes);
 app.use('/startup', startupRoutes);
 app.use('/student', studentRoutes);
 app.use('/contact', contactRoutes);
 app.use('/update', updateRoutes);
-app.use('/update', updateRoutes);
+app.use('/industry', industryRoutes);
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
