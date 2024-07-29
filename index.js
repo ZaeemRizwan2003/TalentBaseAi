@@ -16,7 +16,7 @@ const courseRoutes = require('./routes/course.routes');
 const certificationRoutes = require('./routes/certification.routes');
 const contactRoutes = require('./routes/contact.routes.js')
 const updateRoutes = require('./routes/updates.routes.js')
-
+const industryRoutes=require('./routes/industry.routes.js');
 const learningpathRoutes = require ('./routes/learningpath.routes.js')
 
 const userRoutes=require('./routes/user.routes.js');
@@ -44,6 +44,7 @@ app.use('/startup',startupRoutes);
 app.use('/student',studentRoutes);
 app.use('/contact', contactRoutes);
 app.use('/update', updateRoutes);
+app.use('/industry',industryRoutes);
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
