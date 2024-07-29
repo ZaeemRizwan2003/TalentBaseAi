@@ -80,4 +80,27 @@ router.delete('/liststartups/:id', async (req, res) => {
   }
 });
 
+
+
+// fetch startups based on industory sector
+router.post('/search', async (req, res) => {
+  console.log('Received search request with startup inustury sector:', req.query.industrySector);
+  try {
+    // Check if title is an array or a single string
+    const title = req.query.industrySector;
+
+    if (!title) {
+      return res.status(400).json({ message: 'startup query parameter is required' });
+    }
+
+    // Use regular expression for partial matching
+    const blogs = await Startup.find({ industrySector: { $regex: title, $options: 'i' } });
+    return res.status(200).json(blogs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 module.exports = router;
