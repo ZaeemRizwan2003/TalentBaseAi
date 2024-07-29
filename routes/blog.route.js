@@ -121,7 +121,7 @@ router.delete('/blogs/:id', async (req, res) => {
     }
   });
 
-
+  
 // search blogs based on title
 router.post('/blogs/search', async (req, res) => {
   console.log('Received search request with title:', req.query.title);
