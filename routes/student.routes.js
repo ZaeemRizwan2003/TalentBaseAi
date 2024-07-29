@@ -49,11 +49,13 @@ router.get('/profile/:userId', async (req, res) => {
 
     }
     catch(err)
+
 {
     console.log(err);
 }
 }
 );
+
 
 // Update student profile
 router.put('/profile/:userId', async (req, res) => {
