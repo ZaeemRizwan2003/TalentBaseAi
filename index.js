@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'your_secret_key', // Ensure you set this in your .env file
+    secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: uri }),

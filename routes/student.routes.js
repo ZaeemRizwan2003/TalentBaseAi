@@ -4,8 +4,15 @@ const User = require('../models/user.models');
 const Student = require('../models/student.models');
 const mongoose = require('mongoose');
 
-router.post('/profile/:userId', async (req, res) => {
-    const { userId } = req.params;
+router.post('/profile', async (req, res) => {
+    const userId = req.session.userId;
+
+    console.log('Session ID:', userId); // Debugging line
+
+    if (!userId) {
+        return res.status(403).json({ message: 'Unauthorized. No user ID found in session.' });
+    }
+
     const studentData = req.body;
 
     try {
@@ -16,7 +23,7 @@ router.post('/profile/:userId', async (req, res) => {
             studentProfile = await Student.findByIdAndUpdate(
                 studentProfile._id,
                 { $set: studentData },
-                { new: true, upsert: true }
+                { new: true, runValidators: true }
             );
         } else {
             // Create new profile
@@ -29,6 +36,7 @@ router.post('/profile/:userId', async (req, res) => {
             data: studentProfile
         });
     } catch (error) {
+        console.error('Error saving profile:', error);
         res.status(500).json({
             message: 'Failed to save profile',
             error: error.message

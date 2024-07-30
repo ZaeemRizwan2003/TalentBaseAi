@@ -13,7 +13,7 @@ router.post('/listProduct', async (req, res) => {
         }
 
         // Get the user ID from the session
-        const createdBy = req.session._id; // Assuming _id is stored in session
+        const createdBy = req.session.userId; // Assuming _id is stored in session
 
         // Validate if the user ID is available in the session
         if (!createdBy) {
@@ -106,7 +106,7 @@ router.post('/feedback/:productId', async (req, res) => {
         }
 
         // Get the user ID from the session
-        const user = req.session._id; // Assuming _id is stored in session
+        const user = req.session.userId; // Assuming _id is stored in session
 
         // Validate if the user ID is available in the session
         if (!user) {
@@ -209,7 +209,7 @@ router.post('/offers/:productId', async (req, res) => {
         }
 
         // Get the user ID from the session
-        const user = req.session._id; // Assuming _id is stored in session
+        const user = req.session.userId; // Assuming _id is stored in session
 
         // Validate if the user ID is available in the session
         if (!user) {
@@ -280,7 +280,7 @@ router.post('/offers/:productId/:offerId/reply', async (req, res) => {
         }
 
         // Get the user ID from the session
-        const user = req.session._id; // Assuming _id is stored in session
+        const user = req.session.userId; // Assuming _id is stored in session
 
         // Validate if the user ID is available in the session
         if (!user) {

@@ -42,12 +42,15 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-       
+
         req.session.userId = user._id;
         req.session.role = user.role;
-        req.session.email= user.email;
+        req.session.email = user.email;
         req.session.username = user.username;
-
+        console.log('Session userId set:', req.session.userId);
+        console.log('Session role set:', req.session.role);
+        console.log('Session email set:', req.session.email);
+        console.log('Session username set:', req.session.username);
         res.status(200).json({ message: 'Login successful' });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in', error: error.message });

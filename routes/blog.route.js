@@ -16,7 +16,7 @@ router.post('/blogs', async (req, res) => {
 
   try {
       // Get the user ID from the session
-      const authorId = req.session._id; // Assuming _id is stored in session
+      const authorId = req.session.userId; // Assuming _id is stored in session
 
       // Validate if the user ID is available in the session
       if (!authorId) {

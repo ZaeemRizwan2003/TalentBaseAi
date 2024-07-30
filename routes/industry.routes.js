@@ -4,11 +4,18 @@ const User = require('../models/user.models');
 const Industry = require('../models/industry.models');
 const mongoose = require('mongoose');
 
-router.post('/profile/:userId', async (req, res) => {
-    const { userId } = req.params;
+router.post('/profile', async (req, res) => {
     const industryData = req.body;
 
     try {
+        // Get userId from session
+        const userId = req.session.userId;
+
+        // Validate if userId is present in the session
+        if (!userId) {
+            return res.status(403).json({ message: 'Unauthorized. No user ID found in session.' });
+        }
+
         // Validate if userId is a valid ObjectId
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).json({ message: 'Invalid userId format' });
@@ -17,6 +24,7 @@ router.post('/profile/:userId', async (req, res) => {
         // Convert userId to ObjectId
         const userObjectId = new mongoose.Types.ObjectId(userId);
 
+        // Find the existing profile or create a new one
         let industryProfile = await Industry.findOne({ user: userObjectId });
 
         if (industryProfile) {
