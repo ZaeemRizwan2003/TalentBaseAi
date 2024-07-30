@@ -4,38 +4,45 @@ const Blog = require('../models/blog.models'); // Adjust the path as necessary
 
 // Create a new blog post
 router.post('/blogs', async (req, res) => {
-    const {
-        title,
-        category,
-        body,
-        subHeadings,
-        tags,
-        keywords,
-        authorId,
-        comments
-    } = req.body;
+  const {
+      title,
+      category,
+      body,
+      subHeadings,
+      tags,
+      keywords,
+      comments
+  } = req.body;
 
-    try {
-        const newBlog = new Blog({
-            title,
-            category,
-            body,
-            subHeadings,
-            tags,
-            keywords,
-            authorId,
-            comments
-        });
+  try {
+      // Get the user ID from the session
+      const authorId = req.session._id; // Assuming _id is stored in session
 
-        const savedBlog = await newBlog.save();
-        res.status(201).json(savedBlog);
-    } catch (error) {
-        res.status(500).json({
-            message: error.message
-        });
-    }
+      // Validate if the user ID is available in the session
+      if (!authorId) {
+          return res.status(403).json({ message: "Unauthorized. No user found in session." });
+      }
+
+      // Create a new blog post
+      const newBlog = new Blog({
+          title,
+          category,
+          body,
+          subHeadings,
+          tags,
+          keywords,
+          authorId,
+          comments
+      });
+
+      const savedBlog = await newBlog.save();
+      res.status(201).json(savedBlog);
+  } catch (error) {
+      res.status(500).json({
+          message: error.message
+      });
+  }
 });
-
 
 //Get a single blog based on id of blog 
 router.get('/blogs/:id', async (req, res) => {

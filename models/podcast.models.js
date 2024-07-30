@@ -15,4 +15,5 @@ const podacstSchema = new Schema({
     
 }, { collection: 'PodcastServices' });
 
-module.exports = { podacstSchema}
+
+module.exports = mongoose.model('PodcastServiceRequest', podacstSchema);

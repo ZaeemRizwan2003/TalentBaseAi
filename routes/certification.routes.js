@@ -104,30 +104,45 @@ router.get('/all', async (req, res) => {
   }
 });
 
-// Enroll in a certification
+// POST request to enroll in a certification
 router.post('/enroll', async (req, res) => {
-  const { userId, certificationId } = req.body;
+  const { certificationId } = req.body;
 
   try {
-    const certification = await Certification.findById(certificationId);
+      // Retrieve user ID from session
+      const userId = req.session.userId; // Assuming userId is stored in session
 
-    if (!certification) {
-      return res.status(404).json({ message: 'Certification not found' });
-    }
+      if (!userId) {
+          return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
+      }
 
-    if (certification.enrolledStudents.includes(userId)) {
-      return res.status(400).json({ message: 'Already registered' });
-    }
+      if (!certificationId) {
+          return res.status(400).json({ message: 'Certification ID is required.' });
+      }
 
-    certification.enrolledStudents.push(userId);
-    await certification.save();
+      // Find the certification
+      const certification = await Certification.findById(certificationId);
 
-    res.status(200).json({ message: 'Enrolled successfully', data: certification });
+      if (!certification) {
+          return res.status(404).json({ message: 'Certification not found' });
+      }
+
+      // Check if user is already enrolled
+      if (certification.enrolledStudents.includes(userId)) {
+          return res.status(400).json({ message: 'Already registered' });
+      }
+
+      // Enroll user in the certification
+      certification.enrolledStudents.push(userId);
+      await certification.save();
+
+      res.status(200).json({ message: 'Enrolled successfully', data: certification });
   } catch (error) {
-    res.status(500).json({
-      message: 'Failed to enroll in certification',
-      error: error.message
-    });
+      console.error('Error enrolling in certification:', error);
+      res.status(500).json({
+          message: 'Failed to enroll in certification',
+          error: error.message
+      });
   }
 });
 

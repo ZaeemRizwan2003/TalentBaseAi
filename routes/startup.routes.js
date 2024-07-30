@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Startup = require('../models/startup.models');
 
-// GET endpoint for listing all startups
+
 router.get('/', async (req, res) => {
   try {
     const startups = await Startup.find();
@@ -12,30 +12,40 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST endpoint for creating a new startup listing
-router.post('/liststartups/:id', async (req, res) => {
-  const id = req.params.id;
-  const values = req.body;
-  try {
-    const lists = new Startup({
-      ...values,
-      createdBy: id
-    });
-    await lists.save();
 
-    res.status(201).json({
-      message: 'Startup listing created successfully',
-      data: lists
-    });
+// POST endpoint to create a startup listing
+router.post('/liststartups', async (req, res) => {
+  const values = req.body;
+
+  // Retrieve user ID from session
+  const userId = req.session.userId; // Ensure userId is set during login
+
+  if (!userId) {
+      return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
+  }
+
+  try {
+      // Create a new startup listing with the logged-in user ID
+      const startupListing = new Startup({
+          ...values,
+          createdBy: userId
+      });
+
+      await startupListing.save();
+
+      res.status(201).json({
+          message: 'Startup listing created successfully',
+          data: startupListing
+      });
   } catch (error) {
-    res.status(500).json({
-      message: 'Error creating the listing for your startup!',
-      error: error.message
-    });
+      res.status(500).json({
+          message: 'Error creating the listing for your startup!',
+          error: error.message
+      });
   }
 });
 
-// PUT endpoint for updating a startup listing
+
 router.put('/liststartups/:id', async (req, res) => {
   const id = req.params.id;
   const values = req.body;
@@ -58,7 +68,7 @@ router.put('/liststartups/:id', async (req, res) => {
   }
 });
 
-// DELETE endpoint for deleting a startup listing
+
 router.delete('/liststartups/:id', async (req, res) => {
   const id = req.params.id;
   try {
@@ -82,7 +92,6 @@ router.delete('/liststartups/:id', async (req, res) => {
 
 
 
-// fetch startups based on industory sector
 router.post('/search', async (req, res) => {
   console.log('Received search request with startup inustury sector:', req.query.industrySector);
   try {

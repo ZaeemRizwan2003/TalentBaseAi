@@ -57,7 +57,7 @@ router.get('/profile/:userId', async (req, res) => {
 );
 
 
-// Update student profile
+
 router.put('/profile/:userId', async (req, res) => {
     const { userId } = req.params;
     const studentData = req.body;

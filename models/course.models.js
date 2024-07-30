@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const CourseSchema = new mongoose.Schema({
   courseName: { type: String, required: true },
-  enrolledStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  enrolledStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserInfo' }],
   createdAt: { type: Date, default: Date.now }
 });
 

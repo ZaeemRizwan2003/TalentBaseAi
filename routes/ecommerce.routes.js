@@ -4,10 +4,33 @@ const Product = require('../models/ecommerce.models');
 
 // Product Listing (POST/GET/DELETE/UPDATE)
 router.post('/listProduct', async (req, res) => {
-    const productData = req.body;
     try {
-        const newProduct = new Product(productData);
+        const { name, description, price, category } = req.body;
+
+        // Ensure required fields are provided
+        if (!name || !description || !price || !category) {
+            return res.status(400).json({ message: "All product details are required." });
+        }
+
+        // Get the user ID from the session
+        const createdBy = req.session._id; // Assuming _id is stored in session
+
+        // Validate if the user ID is available in the session
+        if (!createdBy) {
+            return res.status(403).json({ message: "Unauthorized. No user found in session." });
+        }
+
+        // Create a new product
+        const newProduct = new Product({
+            name,
+            description,
+            price,
+            category,
+            createdBy
+        });
+
         await newProduct.save();
+
         res.status(201).json({
             message: 'Product created successfully',
             data: newProduct
@@ -71,7 +94,52 @@ router.delete('/listProduct/:id', async (req, res) => {
     }
 });
 
-// Feedback (GET/DELETE)
+// Feedback (POST/GET/DELETE)
+router.post('/feedback/:productId', async (req, res) => {
+    const productId = req.params.productId;
+    const { comment, rating } = req.body;
+
+    try {
+        // Ensure required fields are provided
+        if (!comment || rating === undefined) {
+            return res.status(400).json({ message: "Comment and rating are required." });
+        }
+
+        // Get the user ID from the session
+        const user = req.session._id; // Assuming _id is stored in session
+
+        // Validate if the user ID is available in the session
+        if (!user) {
+            return res.status(403).json({ message: "Unauthorized. No user found in session." });
+        }
+
+        // Find the product and add feedback
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        const feedback = {
+            user,
+            comment,
+            rating
+        };
+
+        product.feedback.push(feedback);
+        await product.save();
+
+        res.status(201).json({
+            message: 'Feedback added successfully',
+            data: product.feedback
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error adding feedback',
+            error: error.message
+        });
+    }
+});
+
 router.get('/feedback/:productId', async (req, res) => {
     const productId = req.params.productId;
     try {
@@ -113,7 +181,7 @@ router.delete('/feedback/:productId/:feedbackId', async (req, res) => {
     }
 });
 
-// Offers (GET/DELETE/POST/REPLY)
+// Offers (POST/GET/DELETE/REPLY)
 router.get('/offers/:productId', async (req, res) => {
     const productId = req.params.productId;
     try {
@@ -132,14 +200,38 @@ router.get('/offers/:productId', async (req, res) => {
 
 router.post('/offers/:productId', async (req, res) => {
     const productId = req.params.productId;
-    const offer = req.body;
+    const { description, discount, validUntil } = req.body;
+
     try {
+        // Ensure required fields are provided
+        if (!description || !discount || !validUntil) {
+            return res.status(400).json({ message: "Description, discount, and validUntil are required." });
+        }
+
+        // Get the user ID from the session
+        const user = req.session._id; // Assuming _id is stored in session
+
+        // Validate if the user ID is available in the session
+        if (!user) {
+            return res.status(403).json({ message: "Unauthorized. No user found in session." });
+        }
+
+        // Find the product and add offer
         const product = await Product.findById(productId);
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
+
+        const offer = {
+            user,
+            description,
+            discount,
+            validUntil
+        };
+
         product.offers.push(offer);
         await product.save();
+
         res.status(201).json({
             message: 'Offer added successfully',
             data: product.offers
@@ -159,7 +251,7 @@ router.delete('/offers/:productId/:offerId', async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        const offerIndex = product.offers.findIndex(offer => offer._id == offerId);
+        const offerIndex = product.offers.findIndex(off => off._id == offerId);
         if (offerIndex === -1) {
             return res.status(404).json({ message: 'Offer not found' });
         }
@@ -179,21 +271,43 @@ router.delete('/offers/:productId/:offerId', async (req, res) => {
 
 router.post('/offers/:productId/:offerId/reply', async (req, res) => {
     const { productId, offerId } = req.params;
-    const reply = req.body;
+    const { comment } = req.body;
+
     try {
+        // Ensure required fields are provided
+        if (!comment) {
+            return res.status(400).json({ message: "Comment is required." });
+        }
+
+        // Get the user ID from the session
+        const user = req.session._id; // Assuming _id is stored in session
+
+        // Validate if the user ID is available in the session
+        if (!user) {
+            return res.status(403).json({ message: "Unauthorized. No user found in session." });
+        }
+
+        // Find the product and offer, and add reply
         const product = await Product.findById(productId);
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        const offerIndex = product.offers.findIndex(offer => offer._id == offerId);
-        if (offerIndex === -1) {
+        const offer = product.offers.id(offerId);
+        if (!offer) {
             return res.status(404).json({ message: 'Offer not found' });
         }
-        product.offers[offerIndex].replies.push(reply);
+
+        const reply = {
+            user,
+            comment
+        };
+
+        offer.replies.push(reply);
         await product.save();
+
         res.status(201).json({
             message: 'Reply added successfully',
-            data: product.offers[offerIndex]
+            data: offer.replies
         });
     } catch (error) {
         res.status(500).json({
