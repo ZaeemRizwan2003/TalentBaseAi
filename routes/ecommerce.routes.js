@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/ecommerce.models');
+const authMiddleware = require('../middleware/auth');
 
 // Product Listing (POST/GET/DELETE/UPDATE)
-router.post('/listProduct', async (req, res) => {
+router.post('/listProduct',authMiddleware, async (req, res) => {
     try {
         const { name, description, price, category } = req.body;
 
@@ -43,7 +44,7 @@ router.post('/listProduct', async (req, res) => {
     }
 });
 
-router.get('/listProduct', async (req, res) => {
+router.get('/listProduct', authMiddleware,async (req, res) => {
     try {
         const products = await Product.find();
         res.status(200).json(products);
@@ -55,7 +56,7 @@ router.get('/listProduct', async (req, res) => {
     }
 });
 
-router.put('/listProduct/:id', async (req, res) => {
+router.put('/listProduct/:id',authMiddleware, async (req, res) => {
     const id = req.params.id;
     const updatedData = req.body;
     try {
@@ -75,7 +76,7 @@ router.put('/listProduct/:id', async (req, res) => {
     }
 });
 
-router.delete('/listProduct/:id', async (req, res) => {
+router.delete('/listProduct/:id',authMiddleware, async (req, res) => {
     const id = req.params.id;
     try {
         const deletedProduct = await Product.findByIdAndDelete(id);
@@ -95,7 +96,7 @@ router.delete('/listProduct/:id', async (req, res) => {
 });
 
 // Feedback (POST/GET/DELETE)
-router.post('/feedback/:productId', async (req, res) => {
+router.post('/feedback/:productId',authMiddleware, async (req, res) => {
     const productId = req.params.productId;
     const { comment, rating } = req.body;
 
@@ -140,7 +141,7 @@ router.post('/feedback/:productId', async (req, res) => {
     }
 });
 
-router.get('/feedback/:productId', async (req, res) => {
+router.get('/feedback/:productId',authMiddleware, async (req, res) => {
     const productId = req.params.productId;
     try {
         const product = await Product.findById(productId);
@@ -156,7 +157,7 @@ router.get('/feedback/:productId', async (req, res) => {
     }
 });
 
-router.delete('/feedback/:productId/:feedbackId', async (req, res) => {
+router.delete('/feedback/:productId/:feedbackId',authMiddleware, async (req, res) => {
     const { productId, feedbackId } = req.params;
     try {
         const product = await Product.findById(productId);
@@ -182,7 +183,7 @@ router.delete('/feedback/:productId/:feedbackId', async (req, res) => {
 });
 
 // Offers (POST/GET/DELETE/REPLY)
-router.get('/offers/:productId', async (req, res) => {
+router.get('/offers/:productId',authMiddleware, async (req, res) => {
     const productId = req.params.productId;
     try {
         const product = await Product.findById(productId);
@@ -198,7 +199,7 @@ router.get('/offers/:productId', async (req, res) => {
     }
 });
 
-router.post('/offers/:productId', async (req, res) => {
+router.post('/offers/:productId',authMiddleware, async (req, res) => {
     const productId = req.params.productId;
     const { description, discount, validUntil } = req.body;
 
@@ -244,7 +245,7 @@ router.post('/offers/:productId', async (req, res) => {
     }
 });
 
-router.delete('/offers/:productId/:offerId', async (req, res) => {
+router.delete('/offers/:productId/:offerId',authMiddleware, async (req, res) => {
     const { productId, offerId } = req.params;
     try {
         const product = await Product.findById(productId);
@@ -269,7 +270,7 @@ router.delete('/offers/:productId/:offerId', async (req, res) => {
     }
 });
 
-router.post('/offers/:productId/:offerId/reply', async (req, res) => {
+router.post('/offers/:productId/:offerId/reply',authMiddleware, async (req, res) => {
     const { productId, offerId } = req.params;
     const { comment } = req.body;
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const DigitalServiceRequest = require('../models/digitalservice.models'); // Adjust the path as necessary
+const authMiddleware = require('../middleware/auth');
 
 // POST request to create a new digital service request
-router.post('/request', async (req, res) => {
+router.post('/request',authMiddleware, async (req, res) => {
     try {
         const { request } = req.body;
 

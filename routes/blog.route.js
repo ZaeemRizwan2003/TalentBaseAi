@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog.models'); // Adjust the path as necessary
+const authMiddleware = require('../middleware/auth');
 
 // Create a new blog post
-router.post('/blogs', async (req, res) => {
+router.post('/blogs', authMiddleware,async (req, res) => {
   const {
       title,
       category,
@@ -45,7 +46,7 @@ router.post('/blogs', async (req, res) => {
 });
 
 //Get a single blog based on id of blog 
-router.get('/blogs/:id', async (req, res) => {
+router.get('/blogs/:id',authMiddleware, async (req, res) => {
     try {
         const blog = await Blog.findById(req.params.id);
         if (!blog) {
@@ -62,7 +63,7 @@ router.get('/blogs/:id', async (req, res) => {
 });
 
 //Get all blogs of a user
-router.get('/blogs/author/:authorId', async (req, res) => {
+router.get('/blogs/author/:authorId',authMiddleware, async (req, res) => {
     try {
       const blogs = await Blog.find({ authorId: req.params.authorId });
   
@@ -77,7 +78,7 @@ router.get('/blogs/author/:authorId', async (req, res) => {
   });
 
 //Update Blogs
-router.put('/blogs/:id', async (req, res) => {
+router.put('/blogs/:id',authMiddleware, async (req, res) => {
     const {
       title,
       category,
@@ -114,7 +115,7 @@ router.put('/blogs/:id', async (req, res) => {
   });
 
 //Delete Posts
-router.delete('/blogs/:id', async (req, res) => {
+router.delete('/blogs/:id',authMiddleware, async (req, res) => {
     try {
       const blog = await Blog.findByIdAndDelete(req.params.id);
   
@@ -130,7 +131,7 @@ router.delete('/blogs/:id', async (req, res) => {
 
   
 // search blogs based on title
-router.post('/blogs/search', async (req, res) => {
+router.post('/blogs/search',authMiddleware, async (req, res) => {
   console.log('Received search request with title:', req.query.title);
   try {
     // Check if title is an array or a single string

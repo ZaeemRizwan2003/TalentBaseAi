@@ -3,8 +3,9 @@ const router = express.Router();
 const User = require('../models/user.models');
 const Student = require('../models/student.models');
 const mongoose = require('mongoose');
+const authMiddleware = require('../middleware/auth');
 
-router.post('/profile', async (req, res) => {
+router.post('/profile',authMiddleware, async (req, res) => {
     const userId = req.session.userId;
 
     console.log('Session ID:', userId); // Debugging line
@@ -45,7 +46,7 @@ router.post('/profile', async (req, res) => {
 });
 
 // Get student profile
-router.get('/profile/:userId', async (req, res) => {
+router.get('/profile/:userId',authMiddleware, async (req, res) => {
     const { userId } = req.params;
 
     try {
@@ -64,9 +65,7 @@ router.get('/profile/:userId', async (req, res) => {
 }
 );
 
-
-
-router.put('/profile/:userId', async (req, res) => {
+router.put('/profile/:userId',authMiddleware, async (req, res) => {
     const { userId } = req.params;
     const studentData = req.body;
 

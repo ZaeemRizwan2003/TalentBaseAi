@@ -3,8 +3,9 @@ const router = express.Router();
 const User = require('../models/user.models');
 const Industry = require('../models/industry.models');
 const mongoose = require('mongoose');
+const authMiddleware = require('../middleware/auth');
 
-router.post('/profile', async (req, res) => {
+router.post('/profile',authMiddleware, async (req, res) => {
     const industryData = req.body;
 
     try {
@@ -55,7 +56,7 @@ router.post('/profile', async (req, res) => {
 
 
 // Get student profile
-router.get('/profile/:userId', async (req, res) => {
+router.get('/profile/:userId',authMiddleware, async (req, res) => {
     const { userId } = req.params;
 
     try {
@@ -73,7 +74,7 @@ router.get('/profile/:userId', async (req, res) => {
 });
 
 // Update industry profile
-router.put('/profile/:userId', async (req, res) => {
+router.put('/profile/:userId',authMiddleware, async (req, res) => {
     const { userId } = req.params;
     const industryData = req.body;
 

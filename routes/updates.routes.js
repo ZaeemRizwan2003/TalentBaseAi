@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Updates = require('../models/updates.models');
 const mongoose = require('mongoose');
+const authMiddleware = require('../middleware/auth');
 
 
 
 // POST endpoint to send an announcement
-router.post('/send', async (req, res) => {
+router.post('/send',authMiddleware, async (req, res) => {
     const { messageContent, sentAt } = req.body;
 
     if (!messageContent || !sentAt) {
@@ -30,7 +31,7 @@ router.post('/send', async (req, res) => {
     }
 });
 
-router.get('/review', async (req, res) => {
+router.get('/review',authMiddleware, async (req, res) => {
     try {
         // Fetch all announcements from the Update collection
         const updates = await Updates.find();
@@ -45,7 +46,7 @@ router.get('/review', async (req, res) => {
 });
 
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id',authMiddleware, async (req, res) => {
     const id = req.params.id;
     try {
         const deleteupdate = await Updates.findByIdAndDelete(id);

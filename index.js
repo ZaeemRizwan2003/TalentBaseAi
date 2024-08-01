@@ -28,10 +28,7 @@ dotenv.config();
 const port = 5000;
 const uri = process.env.MONGO_KEY;
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(uri)
   .then(() => console.log('Successful connection to MongoDB'))
   .catch((err) => console.error('Error occurred in connecting to MongoDB', err));
 

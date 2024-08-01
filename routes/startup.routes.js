@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Startup = require('../models/startup.models');
+const authMiddleware = require('../middleware/auth');
 
 
-router.get('/', async (req, res) => {
+router.get('/',authMiddleware, async (req, res) => {
   try {
     const startups = await Startup.find();
     res.status(200).json(startups);
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 
 
 // POST endpoint to create a startup listing
-router.post('/liststartups', async (req, res) => {
+router.post('/liststartups',authMiddleware, async (req, res) => {
   const values = req.body;
 
   // Retrieve user ID from session
@@ -46,7 +47,7 @@ router.post('/liststartups', async (req, res) => {
 });
 
 
-router.put('/liststartups/:id', async (req, res) => {
+router.put('/liststartups/:id',authMiddleware, async (req, res) => {
   const id = req.params.id;
   const values = req.body;
   try {
@@ -69,7 +70,7 @@ router.put('/liststartups/:id', async (req, res) => {
 });
 
 
-router.delete('/liststartups/:id', async (req, res) => {
+router.delete('/liststartups/:id',authMiddleware, async (req, res) => {
   const id = req.params.id;
   try {
     const deletedStartup = await Startup.findByIdAndDelete(id);
@@ -92,7 +93,7 @@ router.delete('/liststartups/:id', async (req, res) => {
 
 
 
-router.post('/search', async (req, res) => {
+router.post('/search',authMiddleware, async (req, res) => {
   console.log('Received search request with startup inustury sector:', req.query.industrySector);
   try {
     // Check if title is an array or a single string

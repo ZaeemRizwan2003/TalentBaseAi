@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const PodcastServiceRequest = require('../models/podcast.models'); 
+const authMiddleware = require('../middleware/auth');
 
 // POST request to create a new podcast service request
-router.post('/request', async (req, res) => {
+router.post('/request', authMiddleware,async (req, res) => {
     try {
         const { request } = req.body;
 

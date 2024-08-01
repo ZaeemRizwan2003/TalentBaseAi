@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Contact = require('../models/contactus_model');
+const authMiddleware = require('../middleware/auth');
 
 
 
 // POST request to create a new contact message
-router.post('/:id', async (req, res) => {
+router.post('/:id',authMiddleware, async (req, res) => {
     const { subject, message } = req.body;
    
 

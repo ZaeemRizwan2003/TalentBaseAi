@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Certification = require('../models/certification.models');
+const authMiddleware = require('../middleware/auth');
 
 // Create a new certification
-router.post('/create', async (req, res) => {
+router.post('/create',authMiddleware, async (req, res) => {
   const { certificationName } = req.body;
 
   try {
@@ -22,7 +23,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Delete a certification
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id',authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -42,7 +43,7 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 // Update a certification
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id',authMiddleware, async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
 
@@ -66,7 +67,7 @@ router.put('/update/:id', async (req, res) => {
 });
 
 // Get a certification
-router.get('/get/:id', async (req, res) => {
+router.get('/get/:id',authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -89,7 +90,7 @@ router.get('/get/:id', async (req, res) => {
 });
 
 // Get all certifications
-router.get('/all', async (req, res) => {
+router.get('/all',authMiddleware, async (req, res) => {
   try {
     const certifications = await Certification.find({});
     res.status(200).json({
@@ -104,13 +105,12 @@ router.get('/all', async (req, res) => {
   }
 });
 
-// POST request to enroll in a certification
-router.post('/enroll', async (req, res) => {
+router.post('/enroll', authMiddleware,async (req, res) => {
   const { certificationId } = req.body;
 
   try {
-      // Retrieve user ID from session
-      const userId = req.session.userId; // Assuming userId is stored in session
+      
+      const userId = req.session.userId;
 
       if (!userId) {
           return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
@@ -120,19 +120,18 @@ router.post('/enroll', async (req, res) => {
           return res.status(400).json({ message: 'Certification ID is required.' });
       }
 
-      // Find the certification
       const certification = await Certification.findById(certificationId);
 
       if (!certification) {
           return res.status(404).json({ message: 'Certification not found' });
       }
 
-      // Check if user is already enrolled
+      
       if (certification.enrolledStudents.includes(userId)) {
           return res.status(400).json({ message: 'Already registered' });
       }
 
-      // Enroll user in the certification
+      
       certification.enrolledStudents.push(userId);
       await certification.save();
 
