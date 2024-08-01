@@ -21,6 +21,7 @@ const updateRoutes = require('./routes/updates.routes.js');
 const industryRoutes = require('./routes/industry.routes.js');
 const learningpathRoutes = require('./routes/learningpath.routes.js');
 const userRoutes = require('./routes/user.routes.js');
+const jobofferRoutes = require('./routes/joboffer.routes.js');
 
 const app = express();
 dotenv.config();
@@ -65,6 +66,7 @@ app.use('/certifications', certificationRoutes);
 app.use('/contact', contactRoutes);
 app.use('/update', updateRoutes);
 app.use('/industry', industryRoutes);
+app.use('/joboffer', jobofferRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

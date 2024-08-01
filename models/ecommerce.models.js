@@ -32,7 +32,7 @@ const feedbackSchema = new Schema({
 const offerSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
     },
     product: {

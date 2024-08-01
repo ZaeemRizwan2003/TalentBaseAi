@@ -38,6 +38,7 @@ const advisoryBoardMemberSchema = new Schema({
 // Define the main schema (startup listing)
 
 const listingSchema = new Schema({
+   
     startupname: {
         type: String,
         
@@ -161,7 +162,7 @@ const listingSchema = new Schema({
     },
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
         
     }

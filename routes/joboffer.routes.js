@@ -45,30 +45,13 @@ router.post('/blogs', authMiddleware, async (req, res) => {
   }
 });
 
-// Get a single blog based on id of blog 
-router.get('/blogs/:id', authMiddleware, async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) {
-      return res.status(404).json({
-        message: 'Blog post not found'
-      });
-    }
-    res.status(200).json(blog);
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
-    });
-  }
-});
-
-// Get all blogs of a user
+// Get all blogs of a user where isActive = 1
 router.get('/blogs/author/:authorId', authMiddleware, async (req, res) => {
   try {
-    const blogs = await Blog.find({ authorId: req.params.authorId });
+    const blogs = await Blog.find({ authorId: req.params.authorId, isActive: '1' });
 
     if (blogs.length === 0) {
-      return res.status(404).json({ message: 'No blog posts found for this author' });
+      return res.status(404).json({ message: 'No active blog posts found for this author' });
     }
 
     res.status(200).json(blogs);
@@ -125,7 +108,7 @@ router.delete('/blogs/:id', authMiddleware, async (req, res) => {
 
     res.status(200).json({ message: 'Blog post deleted successfully' });
   } catch (error) {
-    res.status500().json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -149,10 +132,35 @@ router.post('/blogs/search', authMiddleware, async (req, res) => {
   }
 });
 
-// Get all blogs
-router.get('/blogs', authMiddleware, async (req, res) => {
+// Get all blogs where isActive is 0
+router.get('/blogs/inactive', authMiddleware, async (req, res) => {
   try {
-    const blogs = await Blog.find({});
+    const blogs = await Blog.find({ isActive: '0' });
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Approve blog (change isActive from 0 to 1)
+router.put('/blogs/approve/:id', authMiddleware, async (req, res) => {
+  try {
+    const blog = await Blog.findByIdAndUpdate(req.params.id, { $set: { isActive: '1' } }, { new: true });
+
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get all blogs where isActive is 1
+router.get('/blogs/active', authMiddleware, async (req, res) => {
+  try {
+    const blogs = await Blog.find({ isActive: '1' });
     res.status(200).json(blogs);
   } catch (error) {
     res.status(500).json({ message: error.message });

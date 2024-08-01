@@ -37,6 +37,10 @@ const blogSchema = new Schema({
   updatedAt: {
     type: Date,
     default: Date.now
+  },
+  isActive:{
+    type: String,
+    default: 0
   }
 });
 
