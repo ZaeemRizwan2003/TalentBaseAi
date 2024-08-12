@@ -3,7 +3,15 @@ const Schema = mongoose.Schema;
 
 // Define the schema for digital service requests
 const digitalServiceSchema = new Schema({
+    userId: {
+        type: String,
+        
+    },
     email: {
+        type: String,
+        required: true
+    },
+    serviceName: {
         type: String,
         required: true
     },
