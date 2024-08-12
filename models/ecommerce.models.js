@@ -7,12 +7,12 @@ const Schema = mongoose.Schema;
 const feedbackSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
     },
     product: {
         type: Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: 'Startup',
         required: true
     },
     comment: {
@@ -32,12 +32,12 @@ const feedbackSchema = new Schema({
 const offerSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
     },
     product: {
         type: Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: 'Startup',
         required: true
     },
     description: {
@@ -55,7 +55,7 @@ const offerSchema = new Schema({
     replies: [{
         user: {
             type: Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'UserInfo',
             required: true
         },
         comment: {
@@ -91,7 +91,7 @@ const productSchema = new Schema({
    
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
     },
     feedback: {

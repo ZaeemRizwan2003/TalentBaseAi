@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const LearningPath = require('../models/learningpath.models');
+const authMiddleware = require('../middleware/auth');
 
 // Create a new learning path
-router.post('/add', async (req, res) => {
+router.post('/add',authMiddleware, async (req, res) => {
   const { programSelection, streamSelection, courseContents, onlineTest, certification } = req.body;
 
   try {
@@ -29,7 +30,7 @@ router.post('/add', async (req, res) => {
 });
 
 // Get a learning path
-router.get('/get/:id', async (req, res) => {
+router.get('/get/:id',authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -52,7 +53,7 @@ router.get('/get/:id', async (req, res) => {
 });
 
 // Update a learning path
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id',authMiddleware, async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
 

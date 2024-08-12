@@ -22,9 +22,7 @@ const industrySchema = new Schema({
   phone: {
     type: String
   },
-  email: {
-    type: String,
-  },
+ 
   linkedin: {
     type: String,
   },
@@ -36,6 +34,9 @@ const industrySchema = new Schema({
       type: String,
     },
     city: {
+      type: String,
+    },
+    headoffice: {
       type: String,
     }
   },
