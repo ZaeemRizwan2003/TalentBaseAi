@@ -38,7 +38,7 @@ const studentSchema = new Schema({
       type: String,
     }
   },
-  Currentposition: {
+  Currentposition: { //current position of his startup
     type: String,
   },
   previousexperience: {

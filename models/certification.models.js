@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const CertificationSchema = new mongoose.Schema({
   certificationName: { type: String },
-  enrolledStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  enrolledStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserInfo' }],
   createdAt: { type: Date, default: Date.now }
 });
 

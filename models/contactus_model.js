@@ -11,7 +11,7 @@ const contactSchema = new Schema({
     },
     postedby: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'UserInfo',
         required: true
     }
 });
