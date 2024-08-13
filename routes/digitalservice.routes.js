@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DigitalServiceRequest = require('../models/digitalservice.models'); // Adjust the path as necessary
+const DigitalServiceRequest = require('../models/digitalservice.models'); 
 const authMiddleware = require('../middleware/auth');
 
 // POST request to create a new digital service request
@@ -14,7 +14,7 @@ router.post('/request',authMiddleware, async (req, res) => {
         }
 
         // Get the email from the session
-        const loggedInEmail = req.session.email; // Assuming email is stored in session
+        const loggedInEmail = req.session.email; 
         const userId=req.session.userId;
         // Validate if the email is available in the session
         if (!loggedInEmail) {
