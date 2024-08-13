@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { LearningCourse, Stream } = require('../models/learningpath.models');
-const authMiddleware = require('../middleware/authMiddleware'); // Assuming you have an auth middleware
+const authMiddleware = require('../middleware/auth'); // Assuming you have an auth middleware
 
 // Create a new stream
 router.post('/stream', authMiddleware, async (req, res) => {
