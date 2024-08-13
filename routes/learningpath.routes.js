@@ -184,13 +184,23 @@ router.post('/stream/:streamId/complete', authMiddleware, async (req, res) => {
             return res.status(400).json({ message: 'Invalid stream ID or student ID' });
         }
 
-        // Find the stream by ID
-        const stream = await Stream.findById(streamId);
+        // Find the stream by ID and populate courses
+        const stream = await Stream.findById(streamId).populate('courses');
         if (!stream) return res.status(404).json({ message: 'Stream not found' });
 
         // Find the student's entry in the stream
         const studentStream = stream.students.find(s => s.studentId.toString() === studentId);
         if (!studentStream) return res.status(404).json({ message: 'Student not enrolled in this stream' });
+
+        // Check if the student has completed all courses in the stream
+        const allCoursesCompleted = stream.courses.every(course => {
+            const studentCourse = course.students.find(s => s.studentId.toString() === studentId);
+            return studentCourse && studentCourse.completed;
+        });
+
+        if (!allCoursesCompleted) {
+            return res.status(400).json({ message: 'Not all courses in the stream are completed' });
+        }
 
         // Update stream completion status
         studentStream.streamCompleted = true;
@@ -202,6 +212,8 @@ router.post('/stream/:streamId/complete', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Failed to update stream completion status', error: error.message });
     }
 });
+
+
 
 
 // Get all streams
