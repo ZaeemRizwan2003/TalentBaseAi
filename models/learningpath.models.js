@@ -8,7 +8,8 @@ const learningCourseSchema = new Schema({
     students: [{
         studentId: { type: Schema.Types.ObjectId, ref: 'User' },
         completed: { type: Boolean, default: false },
-        paid: { type: Boolean, default: false }
+        paid: { type: Boolean, default: false },
+        score: { type: Number, default: 0 }
     }],
     stream: { type: Schema.Types.ObjectId, ref: 'Stream', required: true }
 });

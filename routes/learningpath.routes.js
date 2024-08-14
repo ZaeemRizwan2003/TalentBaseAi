@@ -46,10 +46,10 @@ router.post('/course', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Failed to create course', error: error.message });
     }
 });
-
-router.post('/course/:courseId/complete', authMiddleware, async (req, res) => {
+router.post('/course/:courseId/score', authMiddleware, async (req, res) => {
     const { courseId } = req.params;
-    const studentId = req.session.userId; // Pick studentId from session
+    const studentId = req.session.userId; // Get studentId from session
+    const { score } = req.body; // The new score submitted
 
     try {
         // Validate ObjectId format
@@ -65,16 +65,82 @@ router.post('/course/:courseId/complete', authMiddleware, async (req, res) => {
         const studentCourse = course.students.find(s => s.studentId.toString() === studentId);
         if (!studentCourse) return res.status(404).json({ message: 'Student not enrolled in this course' });
 
-        // Update completion status
-        studentCourse.completed = true;
+        // Update score if the new score is higher than the previous one
+        if (!studentCourse.score || score > studentCourse.score) {
+            studentCourse.score = score;
+        }
+
+        // Update course completion status based on score
+        if (studentCourse.score >= 80) {
+            studentCourse.completed = true;
+        }
+
         await course.save();
 
-        res.status(200).json({ message: 'Course completion updated' });
+        // Return the stream ID to be used for the next API call
+        res.status(200).json({
+            message: 'Score and course completion status updated',
+            streamId: course.stream
+        });
     } catch (error) {
-        console.error('Error occurred:', error); // Added logging
-        res.status(500).json({ message: 'Failed to update course completion', error: error.message });
+        console.error('Error occurred:', error);
+        res.status(500).json({ message: 'Failed to update score or course completion', error: error.message });
     }
 });
+
+router.post('/stream/:streamId/complete', authMiddleware, async (req, res) => {
+    const { streamId } = req.params;
+    const studentId = req.session.userId; // Get studentId from session
+
+    try {
+        // Validate ObjectId format
+        if (!mongoose.Types.ObjectId.isValid(streamId) || !mongoose.Types.ObjectId.isValid(studentId)) {
+            return res.status(400).json({ message: 'Invalid stream ID or student ID' });
+        }
+
+        // Find the stream by ID and populate courses
+        const stream = await Stream.findById(streamId).populate('courses');
+        if (!stream) return res.status(404).json({ message: 'Stream not found' });
+
+        // Find the student's entry in the stream
+        const studentStream = stream.students.find(s => s.studentId.toString() === studentId);
+        if (!studentStream) return res.status(404).json({ message: 'Student not enrolled in this stream' });
+
+        // Check if the student has completed all courses in the stream
+        const allCoursesCompleted = await Promise.all(stream.courses.map(async (course) => {
+            const courseDetails = await LearningCourse.findById(course._id).lean();
+            if (!courseDetails) {
+                console.warn(`Course ${course._id} not found.`);
+                return false;
+            }
+            // Find the student entry in the course's students array
+            const studentEnrollment = courseDetails.students.find(s => s.studentId.toString() === studentId);
+            if (!studentEnrollment) {
+                console.warn(`Student ${studentId} not found in course ${course._id}.`);
+                return false;
+            }
+            return studentEnrollment.completed;
+        }));
+
+        // Log the completion statuses
+        console.log('Course Completion Statuses:', allCoursesCompleted);
+
+        // Determine if all courses are completed
+        const isStreamCompleted = allCoursesCompleted.every(status => status);
+
+        if (isStreamCompleted) {
+            studentStream.streamCompleted = true;
+            await stream.save();
+            return res.status(200).json({ message: 'Stream completion status updated for the student' });
+        } else {
+            return res.status(200).json({ message: 'Not all courses are completed by the student' });
+        }
+    } catch (error) {
+        console.error('Error occurred:', error);
+        res.status(500).json({ message: 'Failed to check stream completion', error: error.message });
+    }
+});
+
 
 // Enroll a student in a stream and add them to all courses in the stream
 router.post('/stream/:streamId/enroll', authMiddleware, async (req, res) => {
@@ -171,50 +237,6 @@ router.get('/stream/:streamId/courses', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch courses', error: error.message });
     }
 });
-
-
-// Update stream completion status for a student
-router.post('/stream/:streamId/complete', authMiddleware, async (req, res) => {
-    const { streamId } = req.params;
-    const studentId = req.session.userId; // Pick studentId from session
-
-    try {
-        // Validate ObjectId format
-        if (!mongoose.Types.ObjectId.isValid(streamId) || !mongoose.Types.ObjectId.isValid(studentId)) {
-            return res.status(400).json({ message: 'Invalid stream ID or student ID' });
-        }
-
-        // Find the stream by ID and populate courses
-        const stream = await Stream.findById(streamId).populate('courses');
-        if (!stream) return res.status(404).json({ message: 'Stream not found' });
-
-        // Find the student's entry in the stream
-        const studentStream = stream.students.find(s => s.studentId.toString() === studentId);
-        if (!studentStream) return res.status(404).json({ message: 'Student not enrolled in this stream' });
-
-        // Check if the student has completed all courses in the stream
-        const allCoursesCompleted = stream.courses.every(course => {
-            const studentCourse = course.students.find(s => s.studentId.toString() === studentId);
-            return studentCourse && studentCourse.completed;
-        });
-
-        if (!allCoursesCompleted) {
-            return res.status(400).json({ message: 'Not all courses in the stream are completed' });
-        }
-
-        // Update stream completion status
-        studentStream.streamCompleted = true;
-        await stream.save();
-
-        res.status(200).json({ message: 'Stream completion status updated' });
-    } catch (error) {
-        console.error('Error occurred:', error); // Added logging
-        res.status(500).json({ message: 'Failed to update stream completion status', error: error.message });
-    }
-});
-
-
-
 
 // Get all streams
 router.get('/streams', authMiddleware, async (req, res) => {
