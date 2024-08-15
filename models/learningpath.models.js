@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 // LearningCourse schema
 const learningCourseSchema = new Schema({
     name: { type: String, required: true },
+    category: {type: String, required: true},
+    paymentRequired:{type: String, required: true},
     preRequisites: [{ type: Schema.Types.ObjectId, ref: 'LearningCourse' }], // List of course IDs that are pre-requisites
     students: [{
         studentId: { type: Schema.Types.ObjectId, ref: 'User' },

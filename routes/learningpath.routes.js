@@ -18,7 +18,7 @@ router.post('/stream', authMiddleware, async (req, res) => {
 
 // Create a new course within a stream
 router.post('/course', authMiddleware, async (req, res) => {
-    const { name, streamId, preRequisites } = req.body;
+    const { name, streamId, preRequisites, category } = req.body;
 
     try {
         // Ensure pre-requisites belong to the same stream
@@ -34,7 +34,26 @@ router.post('/course', authMiddleware, async (req, res) => {
             return res.status(400).json({ message: 'Invalid pre-requisites detected' });
         }
 
-        const newCourse = new LearningCourse({ name, stream: streamId, preRequisites });
+        // Set paymentRequired based on category
+        let paymentRequired;
+        if (category === 'basic') {
+            paymentRequired = '0';
+        } else if (category === 'advanced') {
+            paymentRequired = '5';
+        } else if (category === 'expert') {
+            paymentRequired = '10';
+        } else {
+            return res.status(400).json({ message: 'Invalid category' });
+        }
+
+        const newCourse = new LearningCourse({
+            name,
+            stream: streamId,
+            preRequisites,
+            category,
+            paymentRequired
+        });
+
         await newCourse.save();
 
         // Add course to stream's course list
@@ -46,6 +65,8 @@ router.post('/course', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Failed to create course', error: error.message });
     }
 });
+
+
 router.post('/course/:courseId/score', authMiddleware, async (req, res) => {
     const { courseId } = req.params;
     const studentId = req.session.userId; // Get studentId from session
