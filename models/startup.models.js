@@ -55,7 +55,7 @@ const listingSchema = new Schema({
         type: String,
         
     },
-    industrySector: {
+    industry: {
         type: String
     },
     businessmodel: {
