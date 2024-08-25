@@ -62,16 +62,57 @@ router.get('/blogs/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Get all blogs of a user
+// Get all blogs of a specific author
 router.get('/blogs/author/:authorId', authMiddleware, async (req, res) => {
   try {
-    const blogs = await Blog.find({ authorId: req.params.authorId });
+    const { authorId } = req.params; // Extract authorId from URL parameters
+
+    // Retrieve all blogs of the specified author
+    const blogs = await Blog.find({ authorId });
 
     if (blogs.length === 0) {
       return res.status(404).json({ message: 'No blog posts found for this author' });
     }
 
-    res.status(200).json(blogs);
+    // Map through blogs to return only the desired attributes
+    const filteredBlogs = blogs.map(blog => ({
+      title: blog.title,
+      body: blog.body,
+      keywords: blog.keywords
+    }));
+
+    res.status(200).json(filteredBlogs);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+module.exports = router;
+
+
+// Get all blogs of the logged-in user
+router.get('/blogs/user', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.session.userId; // Assuming session middleware sets userId
+    if (!userId) {
+      return res.status(401).json({ message: 'User not authenticated' });
+    }
+
+    // Retrieve all blogs of the user
+    const blogs = await Blog.find({ authorId: userId });
+
+    if (blogs.length === 0) {
+      return res.status(404).json({ message: 'No blog posts found for this user' });
+    }
+
+    // Map through blogs to return only the desired attributes
+    const filteredBlogs = blogs.map(blog => ({
+      title: blog.title,
+      body: blog.body,
+      keywords: blog.keywords
+    }));
+
+    res.status(200).json(filteredBlogs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -149,7 +190,7 @@ router.post('/blogs/search', authMiddleware, async (req, res) => {
   }
 });
 
-// Get all blogs
+// Get all blogs by all users
 router.get('/blogs', authMiddleware, async (req, res) => {
   try {
     const blogs = await Blog.find({});

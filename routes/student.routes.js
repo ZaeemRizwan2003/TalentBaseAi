@@ -46,24 +46,28 @@ router.post('/profile',authMiddleware, async (req, res) => {
 });
 
 // Get student profile
-router.get('/profile/:userId',authMiddleware, async (req, res) => {
+router.get('/profile/:userId', authMiddleware, async (req, res) => {
     const { userId } = req.params;
 
     try {
+        // Find the student profile by user ID
         const studentProfile = await Student.findOne({ user: userId });
 
         if (!studentProfile) {
             return res.status(404).json({ message: 'Profile not found' });
         }
 
+        // Return the whole student profile data
+        res.status(200).json(studentProfile);
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+        res.status(500).json({
+            message: 'Failed to fetch profile',
+            error: error.message
+        });
     }
-    catch(err)
+});
 
-{
-    console.log(err);
-}
-}
-);
 
 router.put('/profile/:userId',authMiddleware, async (req, res) => {
     const { userId } = req.params;
