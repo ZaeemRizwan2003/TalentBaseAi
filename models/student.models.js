@@ -8,6 +8,9 @@ const studentSchema = new Schema({
     ref: 'UserInfo',
     required: true
   },
+  email: {
+    type: String,
+  },
   institution: {
     type: String,
   },

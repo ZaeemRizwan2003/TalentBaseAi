@@ -85,8 +85,7 @@ router.put('/blogs/:id', authMiddleware, async (req, res) => {
     body,
     subHeadings,
     tags,
-    keywords,
-    comments
+    keywords
   } = req.body;
 
   try {
